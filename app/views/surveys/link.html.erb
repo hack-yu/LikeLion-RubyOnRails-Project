@@ -1,5 +1,5 @@
 <div class="a">
-<%= bar_chart Survey.group(:total_count).sum(:current_count) %>
+<%= bar_chart Survey.where.not(total_count: nil).group(:total_count).sum(:current_count) %>
 <%= link_to "처음으로 돌아가기", root_path %>
 </div>
 

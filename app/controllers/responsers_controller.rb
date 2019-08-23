@@ -58,7 +58,7 @@ class ResponsersController < ApplicationController
             question_id: params[:id], 
             content: params[:answer][:content])
         @question = @answer.question
-        @a = Question.find_by(survey_id: params[:id])
+        @a = Question.find_by(survey_id: params[:id]).survey_id
         redirect_to r_q_order_path(@question.survey_id, @question.order + 1)
 
     end

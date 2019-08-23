@@ -5,11 +5,17 @@
     </div>
     <hr>
     <%= form_for @responser, url: responser_create_path(@survey.id), method: "post" do |f| %>
-        취합에 응답하거나 수정하려면 입력해주세요. <br>
+        <div class = "explain">취합에 응답하거나 수정하려면 입력해주세요.</div>
         <!--이후 수정을 위해서는 꼭 닉네임, 비밀번호를 기억해주세요.-->
-        닉네임<%= f.text_field :nickname %><br>
-        비밀번호<%= f.password_field :password %><br>
-        <%= f.submit "설문에 대답하기" %>
+        <div class="form-group">
+            <%= f.text_field :nickname, placeholder: "닉네임" %>
+        </div>
+        <div class="form-group">
+            <%= f.password_field :password, placeholder: "비밀번호" %><br>
+        </div>
+        <div class="form-group2">
+            <%= f.submit "설문에 대답하기" %>
+        </div>
     <% end %>
 
 </div>
@@ -27,14 +33,13 @@
         visibility: hidden;
     }
     
-    
     body{
     min-height: 100vh;
     background-image: linear-gradient(120deg, #f37351, #422e8a);
     }
     
     .login-form{
-    width: 360px;
+    width: 53%;
     background: #f1f1f1;
     height: 500px;
     padding: 80px 40px;
@@ -43,9 +48,24 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
+    }
     
     .title {
         font-size: 30px;
+        font-weight: 700;
     }
     
+    .explain {
+        font-size: 14px;
+        padding: 6px 0;
+    }
+    
+    .form-group {
+        font-size: 19px;
+        margin: 4px 0;
+    }
+    .form-group2 {
+        padding: 4px 15px;
+    }
+
 </style>

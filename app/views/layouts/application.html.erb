@@ -67,15 +67,15 @@
           <div class="collapse navbar-collapse text-center" id="navigation">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-                <li class="nav-item login">
+                <li class="nav-item">
                   <%= link_to current_user.email, surveys_path, :class => "nav-link" %> <!-- 자신의 계정 클릭 시 자신의 설문 목록-->
                 </li>
-                <li class="nav-item login">
+                <li class="nav-item">
                   <%#= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => "nav-link" %>
                   <%= link_to "로그아웃", destroy_user_session_path, method: :delete, data: {confirm: "로그아웃 하시겠습니까?"},class: 'nav-link' %>
                 </li>
               <% else %>
-                <li class="nav-item login">
+                <li class="nav-item">
                 <%= link_to "로그인", user_session_path, :class => "nav-link" %>
                 </li>
             </ul>

@@ -13,11 +13,29 @@
     <%= s.title %><br>
     <%= link_to "자세히 보기", survey_path(s) %> / 
     <%= link_to "결과보기", surveys_link_path(s) %> <br>
-
-    <button onclick='
-        alert("https://163b6a0f822f49158af328354cd4e277.vfs.cloud9.ap-northeast-1.amazonaws.com/responsers/index?survey_id="+"<%=s.id %>")'>
-        링크보기 
-    </button>
+    
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<%=s.id%>">공유링크</button>
+   <!-- Modal -->
+        <div class="modal fade" id="myModal<%=s.id%>" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">링크보기</h4>
+                    </div>
+                    <div class="modal-body" id="modal-link" align="center"> <!-- modal body-->
+                    <h2>
+                    https://163b6a0f822f49158af328354cd4e277.vfs.cloud9.ap-northeast-1.amazonaws.com/responsers/index?survey_id=<%= s.id %>
+                    </h2>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     
 
     <%= link_to "삭제하기", survey_path(s), method: :delete %>

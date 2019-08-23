@@ -25,11 +25,20 @@ Rails.application.routes.draw do
   end
 
   ## 설문 응답자
-  # get 'responsers/questions/:id' => 'responsers#questions', as: 'q_responser'
+  get 'surveys/:survey_id/responsers' => 'responsers#index'
   get 'surveys/:survey_id/responsers/new' => 'responsers#new'
+  post 'surveys/:survey_id/responsers/question/:order' => 'responsers#r_create'
   get 'surveys/:survey_id/responsers/question/:order' => 'responsers#question', as: 'r_q_order'
   post 'responsers/question/:id/answer' => 'responsers#answer', as: 'responsers_answer'
   
+  # -----
+  #     ## 설문 응답자
+  #   resources :responsers
+  #   # get 'responsers/questions/:id' => 'responsers#questions', as: 'q_responser'
+  #   get 'responsers/new' => 'responsers#new'
+  #   get 'responsers/question/:id' => 'responsers#question', as: 'r_q_order'
+  #   post 'responsers/answer'
+  # ------
  
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
   

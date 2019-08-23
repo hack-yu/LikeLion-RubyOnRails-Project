@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   ## 설문 응답자
   get 'surveys/:survey_id/responsers' => 'responsers#index'
   get 'surveys/:survey_id/responsers/new' => 'responsers#new'
-  post 'surveys/:survey_id/responsers/question/:order' => 'responsers#r_create'
+  post 'surveys/:survey_id/responsers' => 'responsers#r_create', as: 'responser_create'
   get 'surveys/:survey_id/responsers/question/:order' => 'responsers#question', as: 'r_q_order'
   post 'responsers/question/:id/answer' => 'responsers#answer', as: 'responsers_answer'
   

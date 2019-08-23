@@ -6,7 +6,7 @@
     <%= @survey_title %>
     <%# @survey %>
     <hr>
-    <%= form_for @responser, url: r_q_order_path(@survey.id ,1), method: "post" do |f| %>
+    <%= form_for @responser, url: responser_create_path(@survey.id), method: "post" do |f| %>
         설문에 대답하거나 수정하려면 닉네임과 패스워드를 입력해주세요. <br>
         <!--이후 수정을 위해서는 꼭 닉네임, 비밀번호를 기억해주세요.-->
         닉네임<%= f.text_field :nickname %><br>
@@ -18,7 +18,6 @@
 
 
 
-
 <%# @questions.each do |s| %>
     <!--<span style="font-weight: bold">질문 제목:</span>-->
     <%#= s.question_content %>
@@ -27,6 +26,6 @@
 
 <style>
     .a {
-        margin-top: 300px;
+        margin-top: 200px;
     }
 </style>

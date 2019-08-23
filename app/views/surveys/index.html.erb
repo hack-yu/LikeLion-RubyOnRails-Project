@@ -1,20 +1,16 @@
-<div><h1>내가 만든 취합</h1></div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div align="center"><button> <%= link_to "새 취합하기", root_path %> </button></h1></div>
+<h1 align= "center">내 취합 목록</h1>
+<div align= "right"><%= link_to "새 취합하기", root_path, class:"btn" %></div>
 <br>
 
 <%= @text %>
 <% @surveys.each do |s| %>
-    <span style="font-weight: bold">취합 제목:</span>
-    <%= s.title %><br>
-    <%= link_to "자세히 보기", survey_path(s) %> / 
-    <%= link_to "결과보기", surveys_link_path(s) %> <br>
+    <span class="title-black">취합명:</span>
+    <span class="title"><%= s.title %></span>
+    개설일 : <%= s.created_at.strftime("%y. %m. %d") %><br>
+    <%= link_to "자세히 보기", survey_path(s), class: "small-btn small-text" %>
+    <%= link_to "결과보기", surveys_link_path(s), class: "small-btn small-text"  %> <br>
     
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<%=s.id%>">공유링크</button>
+    <button type="button" class="small-btn small-text" data-toggle="modal" data-target="#myModal<%=s.id%>">공유링크</button>
    <!-- Modal -->
         <div class="modal fade" id="myModal<%=s.id%>" role="dialog">
             <div class="modal-dialog">
@@ -38,35 +34,16 @@
         </div>
     
 
-    <%= link_to "삭제하기", survey_path(s), method: :delete %>
+    <%= link_to "삭제하기", survey_path(s), method: :delete, class: "small-btn small-text"  %>
     <%= s.link %><br>
-    개설일 : 만든날짜
+
     
 
     <hr>
 <% end %>
 
 
-<style>
- .textfield-btn {
-    height: 64px;
-    width: 120px;
-    padding-right: 2px;
-    background: rgb(221, 221, 221);
- }
- 
- .textfield-text {
-    padding: 12px 8px;
-    margin: 0 4px;
-    border: none;
-    color: #542cb7;
-    font-size: 42% ;
-    font-family: "S-CoreDream-4Regular";
-    font-weight: 600;
-    border-radius: 5px;
-    text-align: center;
- }
-</style>
+
 
 
 <script>
@@ -77,3 +54,105 @@
 <script> function btn()
     { }
 </script>
+
+<style>
+*{
+  font-family: 'S-CoreDream-4Regular';
+  font-size: 20px;
+}
+
+  .center {
+    text-align: center;
+  }
+  
+  .bigfont{
+      font-size: 60px;
+  }
+  
+ .btn {
+  font-size: 20px;
+  text-transform: capitalize;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  border: 0;
+  position: relative;
+  z-index: 1;
+  transition: .2s ease;
+  background: #41228e;
+  margin: 5px;
+  color: white;
+
+
+  &:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+ }
+  
+ .btn2 {
+  font-size: 20px;
+  text-transform: capitalize;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  border: 0;
+  position: relative;
+  z-index: 1;
+  transition: .2s ease;
+  background: #ee519d;
+  margin: 5px;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+ } 
+  
+  .btn-primary {
+  background: $primary-color;
+  color: $white;
+
+  &:active {
+    background: lighten($color: $primary-color, $amount: 10) !important;
+  }
+
+  &:hover {
+    background: lighten($color: $primary-color, $amount: 10);
+  }
+
+  &.focus,
+  &.active {
+    background: lighten($color: $primary-color, $amount: 10) !important;
+    box-shadow: none !important;
+  }
+  }
+  
+ .small-btn {
+    height: 30px;
+    width: 70px;
+    background: rgb(221, 221, 221);
+ }
+ 
+ .small-text {
+    padding: 5px 3px;
+    margin: 1px;
+    border: none;
+    color: #542cb7;
+    font-size: 100% ;
+    font-family: "S-CoreDream-4Regular";
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+ }
+ 
+ .title {
+     font-family: "S-CoreDream-8Heavy";
+     color: #542cb7
+ }
+ 
+  .title-black {
+     font-family: "S-CoreDream-8Heavy";
+     color: black;
+ }
+ </style>

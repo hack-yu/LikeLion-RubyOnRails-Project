@@ -1,47 +1,57 @@
 <!--responser 컨트롤러의 new-->
 <!--여기에 여러개의 answer을 연결-->
-<!--질문question을 하나씩 불러오고-->
-<!--답변하는 칸을 만든다. answer을 db로 전송-->
 
-<!--question의 order가 1인 것을 불러옴-->
-<!--그에 맞는 답변칸을 만듬-->
+<div class= "login-form">
+    <div class = "title">
+        <%= @question.question_content %><br>
+    </div>
+    <%#= @question.question_subcontent %><br>
 
-<!--question의 order가 1+1인 것을 불러옴-->
-<!--그에 맞는 답변칸을 만듬-->
+    <%#= form_tag responsers_answer_path(@question.id), method: "post" %>
+        <%#= text_field_tag :content %>
+        <%#= submit_tag %>
+    <%# end %>
 
-<div class="a">
-<%= @question.question_content %><br>
-<%= @question.question_subcontent %><br>
-
-<%#= form_tag responsers_answer_path(@question.id), method: "post" %>
-    <%#= text_field_tag :content %>
-    <%#= submit_tag %>
-<%# end %>
-
-<% if @is_last_order %>
-    <%= form_for @answer, url: responsers_thanks_path(@question.id), method: "post" do |f| %>
-        <%= f.text_field :content %><br>
-        <%= f.submit "완료" %>
+    <% if @is_last_order %>
+        <%= form_for @answer, url: responsers_thanks_path(@question.id), method: "post" do |f| %>
+            <%= f.text_field :content %><br>
+            <%= f.submit "완료", class: "submit" %>
+        <% end %>
+    <% else %>
+        <%= form_for @answer, url: responsers_answer_path(@question.id), method: "post" do |f| %>
+            <%= f.text_field :content %><br>
+            <%= f.submit "다음", class: "submit" %>
+        <% end %>
     <% end %>
-<% else %>
-    <%= form_for @answer, url: responsers_answer_path(@question.id), method: "post" do |f| %>
-        <%= f.text_field :content %><br>
-        <%= f.submit "다음" %>
-    <% end %>
-<% end %>
 
 </div>
 
 <style>
-    .a {
-        margin-top: 200px;
+    .navbar {
+        visibility: hidden;
     }
-    
     body{
     min-height: 100vh;
     background-image: linear-gradient(120deg, #f37351, #422e8a);
     }
-    
-    
+    .login-form{
+    width: 53%;
+    background: #f1f1f1;
+    height: 330px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    }
+    .title {
+        font-size: 30px;
+        font-weight: 700;
+    }
+    .submit {
+        margin-top: 10px;
+        padding: 3px 20px;
+    }
     
 </style>

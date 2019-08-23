@@ -93,3 +93,5 @@ gem 'bootstrap'
 
 # 부트스트랩을 사용하기 위한
 gem 'jquery-rails'
+
+gem "chartkick"

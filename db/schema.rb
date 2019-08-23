@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_08_23_114937) do
     t.text "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "current_count"
+    t.integer "current_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,1 +1,266 @@
-감사합니다!
+<section class="hero-area bg-primary" id="parallax">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-11 mx-auto">
+        <div class="text-white h1-text text-center">
+          <div class= "text1">감사합니다!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="layer-bg w-100">
+    <img class="img-fluid w-100" src="<%= asset_path 'leaf-bg.png' %>" alt="bg-shape">
+  </div>
+  <div class="layer" id="l2">
+    <img src="<%= asset_path 'dots-cyan.png' %>" alt="bg-shape">
+  </div>
+  <div class="layer" id="l3">
+    <img src="<%= asset_path 'leaf-orange.png' %>" alt="bg-shape">
+  </div>
+  <div class="layer" id="l4">
+    <img src="<%= asset_path 'dots-orange.png' %>" alt="bg-shape">
+  </div>
+  <div class="layer" id="l5">
+    <img src="<%= asset_path 'leaf-yellow.png' %>" alt="bg-shape">
+  </div>
+  <div class="layer" id="l6">
+    <img src="<%= asset_path 'leaf-cyan.png' %>" alt="bg-shape">
+  </div>
+  <div class="layer" id="l7">
+    <img src="<%= asset_path 'dots-group-orange.png' %>" alt="bg-shape">
+  </div>
+  <div class="layer" id="l8">
+    <img src="<%= asset_path 'leaf-pink-round.png' %>" alt="bg-shape">
+  </div>
+  <div class="layer" id="l9">
+    <img src="<%= asset_path 'leaf-cyan-2.png' %>" alt="bg-shape">
+  </div>
+</section>
+
+
+<script>
+/* ########################################### hero parallax ############################################## */
+    window.onload = function () {
+
+        var parallaxBox = document.getElementById('parallax');
+        var
+            /* c1left = document.getElementById('l1').offsetLeft,
+                       c1top = document.getElementById('l1').offsetTop, */
+            c2left = document.getElementById('l2').offsetLeft,
+            c2top = document.getElementById('l2').offsetTop,
+            c3left = document.getElementById('l3').offsetLeft,
+            c3top = document.getElementById('l3').offsetTop,
+            c4left = document.getElementById('l4').offsetLeft,
+            c4top = document.getElementById('l4').offsetTop,
+            c5left = document.getElementById('l5').offsetLeft,
+            c5top = document.getElementById('l5').offsetTop,
+            c6left = document.getElementById('l6').offsetLeft,
+            c6top = document.getElementById('l6').offsetTop,
+            c7left = document.getElementById('l7').offsetLeft,
+            c7top = document.getElementById('l7').offsetTop,
+            c8left = document.getElementById('l8').offsetLeft,
+            c8top = document.getElementById('l8').offsetTop,
+            c9left = document.getElementById('l9').offsetLeft,
+            c9top = document.getElementById('l9').offsetTop;
+
+        parallaxBox.onmousemove = function (event) {
+            event = event || window.event;
+            var x = event.clientX - parallaxBox.offsetLeft,
+                y = event.clientY - parallaxBox.offsetTop;
+
+            /*  mouseParallax('l1', c1left, c1top, x, y, 5); */
+            mouseParallax('l2', c2left, c2top, x, y, 25);
+            mouseParallax('l3', c3left, c3top, x, y, 20);
+            mouseParallax('l4', c4left, c4top, x, y, 35);
+            mouseParallax('l5', c5left, c5top, x, y, 30);
+            mouseParallax('l6', c6left, c6top, x, y, 45);
+            mouseParallax('l7', c7left, c7top, x, y, 30);
+            mouseParallax('l8', c8left, c8top, x, y, 25);
+            mouseParallax('l9', c9left, c9top, x, y, 40);
+        };
+
+    };
+
+    function mouseParallax(id, left, top, mouseX, mouseY, speed) {
+        var obj = document.getElementById(id);
+        var parentObj = obj.parentNode,
+            containerWidth = parseInt(parentObj.offsetWidth),
+            containerHeight = parseInt(parentObj.offsetHeight);
+        obj.style.left = left - (((mouseX - (parseInt(obj.offsetWidth) / 2 + left)) / containerWidth) * speed) + 'px';
+        obj.style.top = top - (((mouseY - (parseInt(obj.offsetHeight) / 2 + top)) / containerHeight) * speed) + 'px';
+    }
+    /* ########################################### /hero parallax ############################################## */
+  
+</script>
+
+<style>
+  /*  typography */
+  @import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Roboto:300,400,500,700");
+    
+    .navbar {
+        visibility: hidden;
+    }
+  .hero-area {
+    padding: 300px 0 200px;
+    position: relative;
+    @include tablet {
+      padding: 250px 0 150px;
+      overflow: hidden;
+    }
+  }
+
+    /*.font-tertiary {*/
+  /*  font-family: $tertiary-font !important;*/
+  /*}*/
+  
+  body {
+    line-height: 1.2;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    color: #4c4c4c;
+  }
+  
+  p, .paragraph {
+    font-weight: 400;
+    color: #4c4c4c;
+    font-size: 15px;
+    line-height: 1.8;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  p-lg, .paragraph-lg {
+    font-size: 22px;
+  }
+  
+  .h1-text {
+      position: relative;
+      z-index: 2;
+      font-family: "S-CoreDream-4Regular";
+      font-size: 80px;
+    }
+  
+  .text1 {
+      font-size: 50% ;
+      font-weight: 100 ;
+  }
+  .text2 {
+      font-size: 80% ;
+      font-weight: 700 ;
+  }
+  .text3 {
+      font-size: 100% ;
+      font-weight: 900 ;
+  }
+  
+  .text-center {
+      text-align: center;
+    }
+    
+  .bg-primary {
+    background: #41228e !important;
+  }
+  
+  .layer {
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .layer-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .button-big {
+    text-transform: capitalize;
+    padding: 16px 44px;
+    border-radius: 5px;
+    border: 0;
+    position: relative;
+    z-index: 1;
+    transition: .2s ease;
+    background-color: rgb(221, 221, 221);
+    font-family: "S-CoreDream-4Regular";
+    font-weight: 600;
+    font-size: 40% ;
+    color: #542cb7;
+  }
+  
+  .textfield {
+    text-transform: capitalize;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+    transition: .2s ease;
+  }
+  
+  .textfield-text{
+    padding: 12px 8px;
+    margin: 0 4px;
+    border: none;
+    color: #542cb7;
+    font-size: 150% ;
+    font-family: "S-CoreDream-4Regular";
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  ::placeholder {
+    font-weight: 400;
+  }
+  
+  .textfield-btn {
+    height: 64px;
+    width: 120px;
+    padding-right: 2px;
+    background: rgb(221, 221, 221);
+  }
+  
+  #l1 {
+    bottom: 0;
+    left: 0;
+  }
+  
+  #l2 {
+    top: 190px;
+    left: -250px;
+  }
+  
+  #l3 {
+    top: 200px;
+    left: 40%;
+  }
+  
+  #l4 {
+    top: 200px;
+    right: 40%;
+  }
+  
+  #l5 {
+    top: 100px;
+    right: -150px;
+  }
+  
+  #l6 {
+    bottom: -20px;
+    left: 10%;
+  }
+  
+  #l7 {
+    bottom: 100px;
+    left: 20%;
+  }
+  
+  #l8 {
+    bottom: 160px;
+    right: 45%;
+  }
+  
+  #l9 {
+    bottom: 100px;
+    right: -10px;
+  }
+
+</style>

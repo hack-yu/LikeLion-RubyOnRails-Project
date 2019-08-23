@@ -44,22 +44,30 @@ class ResponsersController < ApplicationController
         end
     end
     
+    # def answer
+    #     @answer = Answer.create(
+    #         question_id: params[:id], 
+    #         content: params[:answer][:content])
+    #     @question = @answer.question
+    #     redirect_to r_q_order_path(@question.survey_id, @question.order + 1)
+
+    # end
+    
     def answer
         @answer = Answer.create(
             question_id: params[:id], 
             content: params[:answer][:content])
         @question = @answer.question
+        @a = Question.find_by(survey_id: params[:id])
         redirect_to r_q_order_path(@question.survey_id, @question.order + 1)
-        # surveys/:survey_id/responsers/question/:order
 
-        
     end
     
     def thanks
         @answer = Answer.create(
             question_id: params[:id], 
             content: params[:answer][:content])
-        # @question = @answer.question
-        # redirect_to r_q_order_path(@question.survey_id, @question.order + 1)
+        
+
     end
 end

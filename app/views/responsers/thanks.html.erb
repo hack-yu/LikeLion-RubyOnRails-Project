@@ -1,16 +1,10 @@
-<section class="hero-area bg-primary" id="parallax">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-11 mx-auto">
-        <div class="text-white h1-text text-center">
-          <div class= "text1">감사합니다!</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="layer-bg w-100">
-    <img class="img-fluid w-100" src="<%= asset_path 'leaf-bg.png' %>" alt="bg-shape">
-  </div>
+<section class="hero-area" id="parallax">
+    <!--<div class= "login-form">-->
+        <div class= "text1">감사합니다!</div>
+    <!--</div>-->
+  <!--<div class="layer-bg w-100">-->
+  <!--  <img class="img-fluid w-100" src="<%= asset_path 'leaf-bg.png' %>" alt="bg-shape">-->
+  <!--</div>-->
   <div class="layer" id="l2">
     <img src="<%= asset_path 'dots-cyan.png' %>" alt="bg-shape">
   </div>
@@ -108,58 +102,22 @@
       overflow: hidden;
     }
   }
-
-    /*.font-tertiary {*/
-  /*  font-family: $tertiary-font !important;*/
-  /*}*/
-  
-  body {
-    line-height: 1.2;
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 15px;
-    color: #4c4c4c;
-  }
-  
-  p, .paragraph {
-    font-weight: 400;
-    color: #4c4c4c;
-    font-size: 15px;
-    line-height: 1.8;
-    font-family: "Roboto", sans-serif;
-  }
-  
-  p-lg, .paragraph-lg {
-    font-size: 22px;
-  }
-  
-  .h1-text {
-      position: relative;
-      z-index: 2;
-      font-family: "S-CoreDream-4Regular";
-      font-size: 80px;
+  body{
+    min-height: 100vh;
+    background-image: linear-gradient(120deg, #f37351, #422e8a);
     }
-  
   .text1 {
-      font-size: 50% ;
-      font-weight: 100 ;
-  }
-  .text2 {
-      font-size: 80% ;
+      position: relative;
+      z-index: 1;
+      font-family: "S-CoreDream-4Regular";
+      font-size: 70px;
       font-weight: 700 ;
-  }
-  .text3 {
-      font-size: 100% ;
-      font-weight: 900 ;
-  }
-  
-  .text-center {
       text-align: center;
-    }
-    
-  .bg-primary {
-    background: #41228e !important;
+      color: white;
   }
+  /*.bg-primary {*/
+  /*  background: #41228e !important;*/
+  /*}*/
   
   .layer {
     position: absolute;
@@ -218,6 +176,19 @@
     background: rgb(221, 221, 221);
   }
   
+  .login-form{
+      z-index: 1;
+    width: 40%;
+    background: #f1f1f1;
+    height: 150px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    }
+    
   #l1 {
     bottom: 0;
     left: 0;

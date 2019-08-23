@@ -44,23 +44,15 @@ class ResponsersController < ApplicationController
         end
     end
     
-    # def answer
-    #     @answer = Answer.create(
-    #         question_id: params[:id], 
-    #         content: params[:answer][:content])
-    #     @question = @answer.question
-    #     redirect_to r_q_order_path(@question.survey_id, @question.order + 1)
-
-    # end
-    
     def answer
         @answer = Answer.create(
             question_id: params[:id], 
             content: params[:answer][:content])
         @question = @answer.question
-        @a = Question.find_by(survey_id: params[:id]).survey_id
         redirect_to r_q_order_path(@question.survey_id, @question.order + 1)
+        # surveys/:survey_id/responsers/question/:order
 
+        
     end
     
     def thanks
@@ -68,6 +60,8 @@ class ResponsersController < ApplicationController
             question_id: params[:id], 
             content: params[:answer][:content])
         
+        @a = Question.find(params[:id]).survey
+        @a.update(current_count: @a.current_count+1)
 
     end
 end

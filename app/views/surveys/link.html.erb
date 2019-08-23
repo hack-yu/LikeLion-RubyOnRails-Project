@@ -1,3 +1,11 @@
-배포 링크
+<div class="a">
 <%= bar_chart Survey.group(:total_count).sum(:current_count) %>
 <%= link_to "처음으로 돌아가기", root_path %>
+</div>
+
+<style>
+    .a {
+        margin-top: 100px;
+        width: 95%;
+    }
+</style>

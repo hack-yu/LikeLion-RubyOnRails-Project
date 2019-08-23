@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   post 'surveys/:survey_id/responsers' => 'responsers#r_create', as: 'responser_create'
   get 'surveys/:survey_id/responsers/question/:order' => 'responsers#question', as: 'r_q_order'
   post 'responsers/question/:id/answer' => 'responsers#answer', as: 'responsers_answer'
+  post 'responsers/question/:id/thanks' => 'responsers#thanks', as: 'responsers_thanks'
   
   # -----
   #     ## 설문 응답자

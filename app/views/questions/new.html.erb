@@ -2,10 +2,7 @@
 
         var question = 0;
         var answer = 0;
-        
-        function button_value(a){
-            alert(a);
-        }
+        var button_status = [""];
         
         // question_content functions
         function short_text(){   
@@ -19,7 +16,6 @@
             var k = document.createTextNode("Q"+question+". ");
             var j = document.createElement("br");
             var l = document.createElement("br");
-            var o = document.createElement("input");
             
             i.type = "text";
             i.name = "question"+question;
@@ -30,15 +26,16 @@
             
             m.type = "button";
             m.value = "짧은답변";
-            m.onclick = button_value(1);
+            // m.onclick = button_value(1);
+            m.addEventListener('click', function() {
+                button_status.push("짧은답변");
+            });
             
             n.type = "button";
             n.value = "긴답변";
-            n.onclick = button_value(2);
-            
-            //o.type = "hidden";
-            //o.name = question+"button_status";
-            
+            n.addEventListener('click', function() {
+                button_status.push("긴답변");
+            });
             
             
             document.getElementById("sendQuestion_div").appendChild(k);
@@ -133,19 +130,8 @@
 
             for(var x=1; x<=question; x++){
                 
-                /*
-                var a = document.createElement("input");
-                var b = document.createElement("br");
-                var c = document.createElement("br");
-                var temp = document.getElementById("question"+x);
-                
-                a.value = temp.value
-                a.disabled = "true"
-                */
-
                 var a = document.createElement("h3");
                 var c = document.createElement("input");
-                var d = document.createElement("input");
                 var b = document.createElement("br");
                 var e = document.createElement("br");
                 
@@ -155,18 +141,16 @@
                 a.appendChild(temp2);
                 
                 c.type = "button";
-                c.value = "짧은답변";
-                d.type = "button";
-                d.value = "긴답변";
-
+                c.value = button_status[x];
+                if (c.value == "undefined") {
+                      c.value = "답변길이를 설정하지 않았습니다.";
+                }
 
                 document.getElementById("modal-question").appendChild(a);
                 document.getElementById("modal-question").appendChild(c);
-                document.getElementById("modal-question").appendChild(d);
                 document.getElementById("modal-question").appendChild(b);
                 document.getElementById("modal-question").appendChild(e);
-                
-
+            
             }
         }
 
@@ -186,28 +170,20 @@
 <h1>취합명: <%= @survey.title %></h1>
 <br>
 
-<h2>어떤 종류의 질문을 만드시겠습니까?</h2>
-<h2><%= params[:survey_id] %></h2> <!-- 값 확인-->
 
-            <!-- question append button -->
-            <button type="button" class="btn2 btn-info btn-lg"  onclick="">객관식</button>
-            <button type="button" class="btn2 btn-info btn-lg"  onclick=short_text();short_text_answer();>주관식</button>
-            <button type="button" class="btn2 btn-info btn-lg"  onclick="">기타</button>
-            
-        
-            <!--<form action="http://localhost/test3.php" id="sendQuestion" name="sendQuestion" method="GET">-->
-            <%#= form_tag("/surveys/#{params[:survey_id]}/questions", method: :post) do %>
-                <br>
-                <!-- /surveys/#{params[:survey_id]}/questions"-->
-                <!--<form action="/questions/create/"+<%#= params[:survey_id] %> id="sendQuestion" name="sendQuestion" method="POST">-->
                 <form action="/surveys/<%= params[:survey_id]%>/questions" id="sendQuestion" name="sendQuestion" method="POST">
                 
-                
-                
                 <input type="hidden" name="survey_id" value=<%= params[:survey_id] %>></input><br>
-                
+
                 <div id="sendQuestion_div"></div>
-                <div id="sendQuestion_answer_div"></div><hr>
+                <h2>어떤 종류의 질문을 만드시겠습니까?</h2>
+                
+                <button type="button" class="btn2 btn-info btn-lg"  onclick="">객관식</button>
+                <button type="button" class="btn2 btn-info btn-lg"  onclick=short_text();>주관식</button>
+                <button type="button" class="btn2 btn-info btn-lg"  onclick="">기타</button>
+                
+                <!--<div id="sendQuestion_answer_div"></div><hr>
+                
                 <span>원하는 취합 수</span>
                 <input type="number" name="total_count" max="100" placeholder="(옵션)"></input><br><br>
  
@@ -255,6 +231,8 @@
                     </div>
                 </div>
                 
+
+                <br>                            
 
                 <!-- modal preview button-->
                 <button type="button" onclick=modallist(); class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">미리보기</button>

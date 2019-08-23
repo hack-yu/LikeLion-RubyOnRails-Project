@@ -1,13 +1,11 @@
 <!--responser의 index 뷰-->
-<br>
-<br>
-<div class="a">
-    <span style="font-weight: bold">설문 제목:</span>
-    <%= @survey_title %>
-    <%# @survey %>
+<div class= "login-form">
+    <div class = "title">
+        <%= @survey_title %>
+    </div>
     <hr>
     <%= form_for @responser, url: responser_create_path(@survey.id), method: "post" do |f| %>
-        설문에 대답하거나 수정하려면 닉네임과 패스워드를 입력해주세요. <br>
+        취합에 응답하거나 수정하려면 입력해주세요. <br>
         <!--이후 수정을 위해서는 꼭 닉네임, 비밀번호를 기억해주세요.-->
         닉네임<%= f.text_field :nickname %><br>
         비밀번호<%= f.password_field :password %><br>
@@ -25,7 +23,29 @@
 <%# end %>
 
 <style>
-    .a {
-        margin-top: 200px;
+    .navbar {
+        visibility: hidden;
     }
+    
+    
+    body{
+    min-height: 100vh;
+    background-image: linear-gradient(120deg, #f37351, #422e8a);
+    }
+    
+    .login-form{
+    width: 360px;
+    background: #f1f1f1;
+    height: 500px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    
+    .title {
+        font-size: 30px;
+    }
+    
 </style>

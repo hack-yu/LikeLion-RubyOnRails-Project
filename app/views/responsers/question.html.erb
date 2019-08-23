@@ -18,25 +18,30 @@
     <%#= submit_tag %>
 <%# end %>
 
-<%= form_for @answer, url: responsers_answer_path(@question.id), method: "post" do |f| %>
-    <%= f.text_field :content %><br>
-    <%= f.submit "다음" %>
+<% if @is_last_order %>
+    <%= form_for @answer, url: responsers_thanks_path(@question.id), method: "post" do |f| %>
+        <%= f.text_field :content %><br>
+        <%= f.submit "완료" %>
+    <% end %>
+<% else %>
+    <%= form_for @answer, url: responsers_answer_path(@question.id), method: "post" do |f| %>
+        <%= f.text_field :content %><br>
+        <%= f.submit "다음" %>
+    <% end %>
 <% end %>
 
 </div>
-<%# if question.order is last? %>
-    <!--끝버튼 나와야-->
-<%#else%>
-    <!--다음 버튼-->
-    
-<%# end %>
 
-<%#= form_for @number, url:  
-
-
-<% end %>
 <style>
     .a {
         margin-top: 200px;
     }
+    
+    body{
+    min-height: 100vh;
+    background-image: linear-gradient(120deg, #f37351, #422e8a);
+    }
+    
+    
+    
 </style>

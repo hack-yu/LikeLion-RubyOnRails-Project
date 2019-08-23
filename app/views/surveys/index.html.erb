@@ -1,16 +1,14 @@
+<div class="font">
 <h1 align= "center">내 취합 목록</h1>
 <div align= "right"><%= link_to "새 취합하기", root_path, class:"btn" %></div>
 <br>
 
+<!--각 취합내용-->
 <%= @text %>
 <% @surveys.each do |s| %>
     <span class="title-black">취합명:</span>
     <span class="title"><%= s.title %></span>
-    개설일 : <%= s.created_at.strftime("%y. %m. %d") %><br>
-    <%= link_to "자세히 보기", survey_path(s), class: "small-btn small-text" %>
-    <%= link_to "결과보기", surveys_link_path(s), class: "small-btn small-text"  %> <br>
-    
-    <button type="button" class="small-btn small-text" data-toggle="modal" data-target="#myModal<%=s.id%>">공유링크</button>
+    <button type="button" class="link-btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<%=s.id%>"><i class="fas fa-share-alt"> 배포링크</i></button>
    <!-- Modal -->
         <div class="modal fade" id="myModal<%=s.id%>" role="dialog">
             <div class="modal-dialog">
@@ -32,19 +30,20 @@
                 </div>
             </div>
         </div>
-    
-
-    <%= link_to "삭제하기", survey_path(s), method: :delete, class: "small-btn small-text"  %>
-    <%= s.link %><br>
-
-    
+    <span class="small-title">개설일 : <%= s.created_at.strftime("%y. %m. %d") %></span>
+      <br>
+    <div class="blank">
+        <%= link_to "자세히 보기", survey_path(s), class: "small-btn btn-info btn-lg" %>
+        <%= link_to "결과보기", surveys_link_path(s), class: "small-btn btn-info btn-lg" %>
+        <%= link_to "삭제하기", survey_path(s), method: :delete, id: "becareful", class: "small-btn btn-info btn-lg"  %>
+    </div>
 
     <hr>
 <% end %>
 
 
 
-
+</div>
 
 <script>
     
@@ -56,10 +55,9 @@
 </script>
 
 <style>
-*{
+ .font {
   font-family: 'S-CoreDream-4Regular';
-  font-size: 20px;
-}
+ }
 
   .center {
     text-align: center;
@@ -127,24 +125,24 @@
     box-shadow: none !important;
   }
   }
-  
- .small-btn {
-    height: 30px;
-    width: 70px;
-    background: rgb(221, 221, 221);
+ .blank {
+     margin-top: 10px;
  }
  
- .small-text {
-    padding: 5px 3px;
-    margin: 1px;
+ .small-btn {
+    height: 30px;
+    width: 100px;
+    background: rgb(221, 221, 221);
+    padding: 5px 70px;
     border: none;
     color: #542cb7;
-    font-size: 100% ;
+    font-size: 90% ;
     font-family: "S-CoreDream-4Regular";
     font-weight: 600;
     border-radius: 5px;
     text-align: center;
  }
+ 
  
  .title {
      font-family: "S-CoreDream-8Heavy";
@@ -155,4 +153,26 @@
      font-family: "S-CoreDream-8Heavy";
      color: black;
  }
+ 
+ .small-title {
+     font-size: 13px;
+     font-weight: 500;
+     color: grey;
+ }
+ 
+ .link-btn {
+    color: white;
+    padding: 7px 10px;
+    border: none;
+    background: #542cb7;
+    font-size: 40% ;
+    border-radius: 5px;
+    text-align: center;
+ }
+ 
+ #becareful {
+     background: red;
+     color: white;
+ }
+ 
  </style>

@@ -35,19 +35,31 @@ class ResponsersController < ApplicationController
     
     def question
         @answer = Answer.new
-        @question = Question.find_by(survey_id: params[:survey_id], )
-        @question_plus = Question.find_by(id: @number_plus)
+        @question = Question.find_by(survey_id: params[:survey_id], order: params[:order])
+                
+        if Question.find_by(survey_id: @question.survey_id, order: @question.order + 1).nil?
+            @is_last_order = true
+        else
+            @is_last_order = false
+        end
     end
     
     def answer
         @answer = Answer.create(
             question_id: params[:id], 
-            content: params[:content])
+            content: params[:answer][:content])
         @question = @answer.question
         redirect_to r_q_order_path(@question.survey_id, @question.order + 1)
         # surveys/:survey_id/responsers/question/:order
-        # @answer.question_id = params[:id]
-        # @answer.content = params[:answer][:content]
-        # @answer.save
+
+        
+    end
+    
+    def thanks
+        @answer = Answer.create(
+            question_id: params[:id], 
+            content: params[:answer][:content])
+        # @question = @answer.question
+        # redirect_to r_q_order_path(@question.survey_id, @question.order + 1)
     end
 end

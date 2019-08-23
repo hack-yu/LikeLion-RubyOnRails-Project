@@ -1,0 +1,15 @@
+<h1>취합 미리보기</h1>
+<h3> <%= @survey.title %> </h3>
+<hr>
+
+<% @survey.questions.each do |x| %>
+        <%= x.question_content %>
+        <br><input type="text">
+        <hr/>
+<% end %>
+
+<br>
+<br>
+<%= link_to "이전으로", "/surveys/#{@survey.id}/questions/new" %>
+<%= link_to "배포하기", surveys_link_path %>
+<script>alert("https://163b6a0f822f49158af328354cd4e277.vfs.cloud9.ap-northeast-1.amazonaws.com/responsers/index?survey="+<%= @survey.id %>)</script>

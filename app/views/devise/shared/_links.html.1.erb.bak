@@ -1,0 +1,40 @@
+<%- if controller_name != 'sessions' %>
+  <%= link_to t(".sign_in"), new_session_path(resource_name) %><br />
+<% end %>
+
+<%#- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%#= link_to t(".sign_up"), new_registration_path(resource_name) %><br />
+<%# end %> <!-- 회원가입 링크-->
+
+<%#- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%#= link_to t(".forgot_your_password"), new_password_path(resource_name) %><br />
+<%# end %> <!-- 패스워드 분실-->
+
+<%#- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%#= link_to t('.didn_t_receive_confirmation_instructions'), new_confirmation_path(resource_name) %><br />
+<%# end %>
+
+<%#- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%#= link_to t('.didn_t_receive_unlock_instructions'), new_unlock_path(resource_name) %><br />
+<%# end %>
+
+<%#- if devise_mapping.omniauthable? %>
+  <%#- resource_class.omniauth_providers.each do |provider| %>
+    <%#= link_to t('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider)), omniauth_authorize_path(resource_name, provider) %><br />
+  <%# end %>
+<%# end %>
+
+쉽고 빠르게 SNS 계정으로 로그인하세요!<br><br><br>
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <% if provider.to_s == "naver" %>
+      <div><%= link_to omniauth_authorize_path(resource_name, provider) do %><img src="<%= asset_path 'naver1.png' %>", height="50", width="250"><% end %></div>
+    <% end %>
+    <% if provider.to_s == "facebook" %>
+      <div><%= link_to omniauth_authorize_path(resource_name, provider) do %><img src="<%= asset_path 'facebook1.png' %>", height="50", width="250"><% end %></div>
+    <% end %>
+    <% if provider.to_s == "google_oauth2" %>
+      <div><%= link_to omniauth_authorize_path(resource_name, provider) do %><img src="<%= asset_path 'google1.png' %>", height="50", width="250"><% end %></div>
+    <% end %>
+  <% end -%>
+<% end -%>

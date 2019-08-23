@@ -1,0 +1,61 @@
+<div><h1>내가 만든 취합</h1></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div align="center"><button> <%= link_to "새 취합하기", root_path %> </button></h1></div>
+<br>
+
+<%= @text %>
+<% @surveys.each do |s| %>
+    <span style="font-weight: bold">취합 제목:</span>
+    <%= s.title %><br>
+    <%= link_to "자세히 보기", survey_path(s) %> / 
+    <%= link_to "결과보기", surveys_link_path(s) %> <br>
+
+    <button onclick='
+        alert("https://163b6a0f822f49158af328354cd4e277.vfs.cloud9.ap-northeast-1.amazonaws.com/responsers/index?survey_id="+"<%=s.id %>")'>
+        링크보기 
+    </button>
+    
+
+    <%= link_to "삭제하기", survey_path(s), method: :delete %>
+    <%= s.link %><br>
+    개설일 : 만든날짜
+    
+
+    <hr>
+<% end %>
+
+
+<style>
+ .textfield-btn {
+    height: 64px;
+    width: 120px;
+    padding-right: 2px;
+    background: rgb(221, 221, 221);
+ }
+ 
+ .textfield-text {
+    padding: 12px 8px;
+    margin: 0 4px;
+    border: none;
+    color: #542cb7;
+    font-size: 42% ;
+    font-family: "S-CoreDream-4Regular";
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+ }
+</style>
+
+
+<script>
+    
+</script>
+
+
+<script> function btn()
+    { }
+</script>

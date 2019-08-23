@@ -1,0 +1,95 @@
+<%- if controller_name != 'sessions' %>
+  <%= link_to t(".sign_in"), new_session_path(resource_name) %><br />
+<% end %>
+
+<%#- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%#= link_to t(".sign_up"), new_registration_path(resource_name) %><br />
+<%# end %> <!-- 회원가입 링크-->
+
+<%#- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%#= link_to t(".forgot_your_password"), new_password_path(resource_name) %><br />
+<%# end %> <!-- 패스워드 분실-->
+
+<%#- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%#= link_to t('.didn_t_receive_confirmation_instructions'), new_confirmation_path(resource_name) %><br />
+<%# end %>
+
+<%#- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%#= link_to t('.didn_t_receive_unlock_instructions'), new_unlock_path(resource_name) %><br />
+<%# end %>
+
+<%#- if devise_mapping.omniauthable? %>
+  <%#- resource_class.omniauth_providers.each do |provider| %>
+    <%#= link_to t('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider)), omniauth_authorize_path(resource_name, provider) %><br />
+  <%# end %>
+<%# end %>
+<div class= "login-form">
+<h1>Login</h1><Br>
+<h3>쉽고 빠르게<br>SNS 계정으로 로그인하세요!</h3>
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <% if provider.to_s == "naver" %>
+          <div class="txtb"><%= link_to omniauth_authorize_path(resource_name, provider) do %><img src="<%= asset_path 'naver1.png' %>", height="50"><% end %></div>
+        <% end %>
+        <% if provider.to_s == "facebook" %>
+          <div class="txtb"><%= link_to omniauth_authorize_path(resource_name, provider) do %><img src="<%= asset_path 'facebook1.png' %>", height="50"><% end %></div>
+        <% end %>
+        <% if provider.to_s == "google_oauth2" %>
+          <div class="txtb"><%= link_to omniauth_authorize_path(resource_name, provider) do %><img src="<%= asset_path 'google1.png' %>", height="50"><% end %></div>
+        <% end %>
+      <% end -%>
+    <% end -%>
+
+</div>
+
+
+
+
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  
+  body{
+    min-height: 100vh;
+    background-image: linear-gradient(120deg, #f37351, #422e8a);
+  }
+  
+  .login-form{
+    width: 360px;
+    background: #f1f1f1;
+    height: 500px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+  
+  .login-form h1{
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: S-CoreDream-8Heavy;
+    font-size: 40px;
+  }
+  
+  .login-form h3{
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 20px;
+  }
+  
+  .txtb{
+    border: 1px solid #adadad;
+    position: relative;
+    border-radius: 10px;
+    margin: 5px;
+  }
+  
+  
+</style>

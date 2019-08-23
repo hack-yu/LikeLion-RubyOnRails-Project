@@ -1,0 +1,46 @@
+<h1><%= @survey.title %></h1>
+
+<br>
+(답변 개수)<br>
+엑셀추출<br>
+
+<div>
+    <span class='blue' data-val='20%'>찬성</span>
+    <span class='red' data-val='80%'>반대</span>
+</div> 
+
+<style>
+    div {
+        margin: 150px 10px;
+        border: 1px solid black;
+        padding: 3px;
+        font-size: 0;
+    }
+    
+    span {
+        display: inline-block;
+        color: #fff;
+        font-size: 20px;
+        line-height: 1.8em;
+        text-align: center;
+    }
+    .blue {
+        background: #00f;
+    }
+    
+    .red {
+        background: #f00;
+        float: right;
+    }
+</style>
+
+<script>
+d3.selectAll('span')
+    .datum(function(){return this.dataset})
+    .style('widht','50%')
+    .transition().duration(2000)
+    .style('width', d=>d.val)
+
+    
+</script>
+

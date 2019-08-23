@@ -1,0 +1,2 @@
+class MultiplesController < ApplicationController
+end

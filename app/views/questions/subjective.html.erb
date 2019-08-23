@@ -1,0 +1,34 @@
+<!--주관식-->
+<!--옆에 미리보기 있으면 좋음-->
+<br><br><br>
+<1> <2> ..... n
+
+<div style = "background-color : beige">
+<h1>질문을 입력해주세요.</h1>
+  
+ 
+</div>
+
+<%= form_tag("/surveys/#{params[:survey_id]}/questions", method: :post) do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title %>
+      
+  <div style = "background-color : #fff0f6">
+    <h4>답변형식</h4>
+    <br>
+    v 짧은 답변<br>
+    v 긴 답변
+    
+    <div style = "background-color : #fcc2d7">
+      옵션 넣기<br>
+      허용할 것 : 문자 / 숫자/ 특수문자 <br>
+      금지어<br>
+      글자수 제한
+    </div>
+  </div>
+
+  <div><%= submit_tag '다음질문 만들기' %></div>
+<% end %>
+
+
+<%#= link_to "다음 질문만들기", new_survey_question_path %> <br>

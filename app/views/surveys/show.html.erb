@@ -1,0 +1,8 @@
+<%= @survey.title %>
+<% @questions.each do |question| %>
+    <p><%= question.order %></p>
+    <p><%= question.question_content %></p>
+<% end %>
+
+
+

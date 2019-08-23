@@ -1,0 +1,40 @@
+Rails.application.routes.draw do
+  
+  root 'homes#index'
+  get 'surveys/:id/preview' => 'surveys#preview'
+  get 'surveys/link'
+  get 'surveys/detail'
+  get 'surveys/result'
+  get 'responsers/index'
+  post 'responsers/r_create'
+  get 'responsers/new'
+  
+  resources :surveys do
+    resources :questions, except: [:show]
+    
+    ##객관식
+    get 'questions/multiple'
+    
+    #주관식
+    get 'questions/subjective' => 'questions#subjective'
+    
+    ## preview(설문 질문내용 미리보기) 경로 정의
+    get 'questions/preview/:id' => 'questions#preview', as: 'q_preview'
+    
+    get 'questions/etc'
+    post 'questions/create'
+    post 'questions/preview_update/:id' => 'questions#preview_update', as: 'q_p_update'
+    
+    get 'responsers/index/:survey' => 'responsers#index'
+  end
+
+  
+  #devise_for :users  
+  devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
+  #resources :posts
+  #resources :posts do
+    #resources :comments
+  #end
+  
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end

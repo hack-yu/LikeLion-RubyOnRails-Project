@@ -1,0 +1,42 @@
+<!--responser 컨트롤러의 new-->
+<!--여기에 여러개의 answer을 연결-->
+<!--질문question을 하나씩 불러오고-->
+<!--답변하는 칸을 만든다. answer을 db로 전송-->
+
+<!--question의 order가 1인 것을 불러옴-->
+<!--그에 맞는 답변칸을 만듬-->
+
+<!--question의 order가 1+1인 것을 불러옴-->
+<!--그에 맞는 답변칸을 만듬-->
+
+<div class="a">
+<%= @question.question_content %><br>
+<%= @question.question_subcontent %><br>
+
+<%#= form_tag responsers_answer_path(@question.id), method: "post" %>
+    <%#= text_field_tag :content %>
+    <%#= submit_tag %>
+<%# end %>
+
+<%= form_for @answer, url: responsers_answer_path(@question.id), method: "post" do |f| %>
+    <%= f.text_field :content %><br>
+    <%= f.submit "다음" %>
+<% end %>
+
+</div>
+<%# if question.order is last? %>
+    <!--끝버튼 나와야-->
+<%#else%>
+    <!--다음 버튼-->
+    
+<%# end %>
+
+<%#= form_for @number, url:  
+
+
+<% end %>
+<style>
+    .a {
+        margin-top: 300px;
+    }
+</style>

@@ -1,0 +1,11 @@
+<!--responser의 index 뷰-->
+<br>
+<br>
+<div>
+<%= form_tag(responsers_r_create_path, method: :post) do %>
+    이름 : <%= text_field_tag :nickname %><br>
+패스워드 : <%= text_field_tag :password %><br>
+<%= submit_tag '취합 시작하기' %>
+<% end %>
+
+</div>

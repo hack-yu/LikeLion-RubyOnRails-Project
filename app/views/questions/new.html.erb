@@ -1,0 +1,323 @@
+<script>
+
+        var question = 0;
+        var answer = 0;
+        
+        // question_content functions
+        function short_text(){   
+            question += 1;
+
+            var colorCode = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+            
+            var i = document.createElement("input");
+            var k = document.createTextNode("Q"+question+". ");
+            var j = document.createElement("br");
+            var l = document.createElement("br");
+
+            i.type = "text";
+            i.name = "question"+question;
+            i.id = "question"+question;
+            i.size = 50;
+            i.value = "";
+            i.style.color = colorCode;
+                
+            document.getElementById("sendQuestion_div").appendChild(k);
+            document.getElementById("sendQuestion_div").appendChild(i);
+            document.getElementById("sendQuestion_div").appendChild(j);
+            document.getElementById("sendQuestion_div").appendChild(l);
+        } 
+
+        
+        function long_text(){ 
+            question += 1;
+
+            var colorCode = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+            
+            var k = document.createTextNode("Q"+question+". ");
+            var i = document.createElement("textarea");
+            var j = document.createElement("br");
+            var l = document.createElement("br");
+            var m = document.createElement("br");
+
+            i.name = "question"+question;
+            i.id = "question"+question;
+            i.size = 50;
+            i.value = "";
+            i.style.color = colorCode;
+            i.cols = 40;
+            i.rows = 8;
+                
+            document.getElementById("sendQuestion_div").appendChild(k);
+            document.getElementById("sendQuestion_div").appendChild(m);
+            document.getElementById("sendQuestion_div").appendChild(i);
+            document.getElementById("sendQuestion_div").appendChild(j);
+            document.getElementById("sendQuestion_div").appendChild(l);
+        } 
+        
+        
+        ///////////////////// answer_functions ///////////////////////
+        /*
+        function short_text_answer(){
+            answer += 1;
+
+            var j = document.createElement("br");
+            var i = document.createElement("input");
+            var k = document.createElement("br");
+            
+            i.type = "hidden";
+            i.name = "answer"+answer;
+            i.size = 50;
+            i.value = "";
+
+            document.getElementById("sendQuestion_answer_div").appendChild(k);
+            document.getElementById("sendQuestion_answer_div").appendChild(i);
+            document.getElementById("sendQuestion_answer_div").appendChild(j);
+        }
+        */
+
+        /*
+        function long_text_answer(){
+            answer += 1;
+
+            var j = document.createElement("br");
+            var i = document.createElement("textarea");
+            var k = document.createElement("br");
+            
+            i.hidden = "hidden";
+            i.name = "answer"+answer;
+            //i.size = 50;
+            i.value = "";
+            //i.cols = 40;
+            //i.rows = 8;
+
+            document.getElementById("sendQuestion_answer_div").appendChild(k);
+            document.getElementById("sendQuestion_answer_div").appendChild(i);
+            document.getElementById("sendQuestion_answer_div").appendChild(j);
+        }
+        */
+
+        
+        function total_question_count(){
+            var total_count_for_send = document.createElement("input");
+            total_count_for_send.name = "question_cnt" // 질문 수 카운트를 위한 
+            total_count_for_send.type="hidden";
+            total_count_for_send.value = question;
+            document.getElementById("sendQuestion_div").appendChild(total_count_for_send);
+        }
+
+
+        function modallist(){
+
+            for(var x=1; x<=question; x++){
+                
+                /*
+                var a = document.createElement("input");
+                var b = document.createElement("br");
+                var c = document.createElement("br");
+                var temp = document.getElementById("question"+x);
+                
+                a.value = temp.value
+                a.disabled = "true"
+                */
+
+                var a = document.createElement("h3");
+                var b = document.createElement("br");
+                var c = document.createElement("br");
+
+                var temp = document.getElementById("question"+x);
+                var temp2 = document.createTextNode("Q"+x+". "+temp.value);
+                a.appendChild(temp2);
+
+
+                document.getElementById("modal-question").appendChild(a);
+                document.getElementById("modal-question").appendChild(b);
+                //document.getElementById("modal-question").appendChild(c);
+
+            }
+        }
+
+        function modallist_clear(){           
+            var x = document.getElementById("modal-question");
+            while(x.hasChildNodes()){
+                x.removeChild(x.firstChild);
+            }
+        }
+        
+    </script>
+
+<!-- -->
+
+<!--body 시작-->
+<div class="center">
+<h1>취합명: <%= @survey.title %></h1>
+<br>
+
+<h2>어떤 종류의 질문을 만드시겠습니까?</h2>
+<h2><%= params[:survey_id] %></h2> <!-- 값 확인-->
+
+            <!-- question append button -->
+            <button type="button" class="btn2 btn-info btn-lg"  onclick=short_text();short_text_answer();>주관식(Short)</button>
+            <button type="button" class="btn2 btn-info btn-lg"  onclick=long_text();long_text_answer();>주관식(Long)</button>
+            
+        
+            <!--<form action="http://localhost/test3.php" id="sendQuestion" name="sendQuestion" method="GET">-->
+            <%#= form_tag("/surveys/#{params[:survey_id]}/questions", method: :post) do %>
+                <br>
+                <!-- /surveys/#{params[:survey_id]}/questions"-->
+                <!--<form action="/questions/create/"+<%#= params[:survey_id] %> id="sendQuestion" name="sendQuestion" method="POST">-->
+                <form action="/surveys/<%= params[:survey_id]%>/questions" id="sendQuestion" name="sendQuestion" method="POST">
+                
+                
+                
+                <input type="hidden" name="survey_id" value=<%= params[:survey_id] %>></input><br>
+                
+                <div id="sendQuestion_div"></div>
+                <div id="sendQuestion_answer_div"></div><hr>
+                <span>원하는 취합 수</span>
+                <input type="number" name="total_count" max="100" placeholder="(옵션)"></input><br><br>
+ 
+                <!-- question send button-->
+                <!--<button type="submit" onclick=total_question_count(); class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">작성완료</button>-->
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myModal2" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">미리보기</h4>
+                            </div>
+                            <div class="modal-body" id="modal-question" align="left"> <!-- modal body-->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick=modallist_clear(); class="btn btn-default" data-dismiss="modal">닫기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">링크생성</h4>
+                            </div>
+                            <div class="modal-body" id="modal-link" align="center"> <!-- modal body-->
+                            <h2>
+                            https://163b6a0f822f49158af328354cd4e277.vfs.cloud9.ap-northeast-1.amazonaws.com/responsers/index?survey_id=<%= params[:survey_id] %>
+                            </h2>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- modal preview button-->
+                <button type="button" onclick=modallist(); class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">미리보기</button>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">공유링크</button>
+                <button type="submit" onclick=total_question_count(); class="btn btn-info btn-lg" data-toggle="modal">작성완료</button> 
+                <%= link_to "취소하기", "/surveys/#{@survey.id}", method: :delete, class:"btn btn-info btn-lg"%>
+                
+            <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts=" /> <!--form post token-->
+            </form>
+        
+<br>
+<br>
+
+</div>
+
+<style>
+
+  .center {
+    text-align: center;
+  }
+  
+  .bigfont{
+      font-size: 60px;
+  }
+  
+  .btn {
+  font-size: 20px;
+  text-transform: capitalize;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  border: 0;
+  position: relative;
+  z-index: 1;
+  transition: .2s ease;
+  background: #41228e;
+  margin: 5px;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+  
+    .btn2 {
+  font-size: 20px;
+  text-transform: capitalize;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  border: 0;
+  position: relative;
+  z-index: 1;
+  transition: .2s ease;
+  background: #ee519d;
+  margin: 5px;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+  
+  
+  .btn-primary {
+  background: $primary-color;
+  color: $white;
+
+  &:active {
+    background: lighten($color: $primary-color, $amount: 10) !important;
+  }
+
+  &:hover {
+    background: lighten($color: $primary-color, $amount: 10);
+  }
+
+  &.focus,
+  &.active {
+    background: lighten($color: $primary-color, $amount: 10) !important;
+    box-shadow: none !important;
+  }
+  }
+  
+ .textfield-btn {
+    height: 40px;
+    width: 120px;
+    padding-right: 2px;
+    background: rgb(221, 221, 221);
+ }
+ 
+ .textfield-text {
+    padding: 12px 8px;
+    margin: 4px;
+    border: none;
+    color: #542cb7;
+    font-size: 42% ;
+    font-family: "S-CoreDream-4Regular";
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+ }
+  
+</style>
